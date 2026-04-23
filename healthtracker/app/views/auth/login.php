@@ -158,7 +158,7 @@
            RIGHT PANEL
         ══════════════════════════════ */
         .right-panel {
-            width: 480px;
+            width: 600px;
             flex-shrink: 0;
             background: #111827;
             display: flex;
