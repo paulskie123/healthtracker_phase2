@@ -13,8 +13,8 @@ $initials = strtoupper(substr($user['full_name'], 0, 1))
         <div>
             <div class="profile-name"><?= htmlspecialchars($user['full_name']) ?></div>
             <div class="profile-meta">
-                <span>👑 <?= htmlspecialchars($user['plan']) ?> — Member since <?= htmlspecialchars($user['member_since']) ?></span>
-                <span>📅 Age: <?= htmlspecialchars($user['age']) ?> &nbsp;|&nbsp; Gender: <?= htmlspecialchars($user['gender']) ?></span>
+                <span>👑 <?= htmlspecialchars($user['plan'] ?? 'Basic') ?> — Member since <?= htmlspecialchars($user['member_since'] ?? 'N/A') ?></span>
+                <span>📅 Age: <?= htmlspecialchars($user['age'] ?? 'N/A') ?> &nbsp;|&nbsp; Gender: <?= htmlspecialchars($user['gender'] ?? 'N/A') ?></span>
             </div>
         </div>
     </div>
@@ -28,11 +28,11 @@ $initials = strtoupper(substr($user['full_name'], 0, 1))
     </div>
     <div class="profile-info-row">
         <span class="profile-info-icon">📞</span>
-        <span class="profile-info-text"><?= htmlspecialchars($user['phone'] ?: 'Not provided') ?></span>
+        <span class="profile-info-text"><?= htmlspecialchars($user['phone'] ?? 'Not provided') ?></span>
     </div>
     <div class="profile-info-row">
         <span class="profile-info-icon">📍</span>
-        <span class="profile-info-text"><?= htmlspecialchars($user['location'] ?: 'Not provided') ?></span>
+        <span class="profile-info-text"><?= htmlspecialchars($user['location'] ?? 'Not provided') ?></span>
     </div>
 
     <div class="profile-divider"></div>
@@ -40,19 +40,19 @@ $initials = strtoupper(substr($user['full_name'], 0, 1))
     <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:10px;">Medical Information</div>
     <div class="profile-info-row">
         <span class="profile-info-icon">🩸</span>
-        <span class="profile-info-text">Blood Type: <strong><?= htmlspecialchars($user['blood_type'] ?: 'Unknown') ?></strong></span>
+        <span class="profile-info-text">Blood Type: <strong><?= htmlspecialchars($user['blood_type'] ?? 'Unknown') ?></strong></span>
     </div>
     <div class="profile-info-row">
         <span class="profile-info-icon">🤚</span>
-        <span class="profile-info-text">Allergies: <?= htmlspecialchars($user['allergies'] ?: 'None') ?></span>
+        <span class="profile-info-text">Allergies: <?= htmlspecialchars($user['allergies'] ?? 'None') ?></span>
     </div>
     <div class="profile-info-row">
         <span class="profile-info-icon">🚑</span>
-        <span class="profile-info-text">Emergency Contact: <?= htmlspecialchars($user['emergency_contact'] ?: 'Not set') ?></span>
+        <span class="profile-info-text">Emergency Contact: <?= htmlspecialchars($user['emergency_contact'] ?? 'Not set') ?></span>
     </div>
     <div class="profile-info-row">
         <span class="profile-info-icon">👨‍⚕️</span>
-        <span class="profile-info-text">Primary Physician: <?= htmlspecialchars($user['physician'] ?: 'Not set') ?></span>
+        <span class="profile-info-text">Primary Physician: <?= htmlspecialchars($user['physician'] ?? 'Not set') ?></span>
     </div>
 </div>
 
