@@ -1,3 +1,5 @@
+<!-- Login page updated by Paolo -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
