@@ -1,0 +1,6 @@
+{
+    "require": {
+        "bacon/bacon-qr-code": "^3.1",
+        "pragmarx/google2fa-qrcode": "^3.0"
+    }
+}
