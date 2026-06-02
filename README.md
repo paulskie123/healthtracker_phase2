@@ -180,7 +180,3 @@ Available pages:
 - Improve validation and add CSRF protection.
 - Add a password reset flow.
 - Add roles beyond the default patient account.
-
----
-
-This README was written to describe the app clearly and naturally, without sounding too formal or robotic.
