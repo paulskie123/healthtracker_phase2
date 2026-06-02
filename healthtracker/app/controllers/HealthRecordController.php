@@ -14,6 +14,59 @@ class HealthRecordController extends Controller {
 
     public function index() {
         $this->requireLogin();
+
+        /* ---- CSV Export ---- */
+        if (isset($_GET['export']) && $_GET['export'] === 'csv') {
+            $records = $this->model->getAll($this->userId());
+
+            $filename = 'health-records-' . date('Y-m-d') . '.csv';
+            header('Content-Type: text/csv; charset=UTF-8');
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
+            header('Pragma: no-cache');
+            header('Expires: 0');
+
+            $out = fopen('php://output', 'w');
+
+            /* UTF-8 BOM so Excel opens it correctly */
+            fputs($out, "\xEF\xBB\xBF");
+
+            /* Header row */
+            fputcsv($out, [
+                'Date',
+                'Systolic BP (mmHg)',
+                'Diastolic BP (mmHg)',
+                'Heart Rate (bpm)',
+                'Weight (kg)',
+                'Blood Sugar (mg/dL)',
+                'BP Status',
+                'Notes',
+            ]);
+
+            /* Data rows */
+            foreach ($records as $r) {
+                $sys = $r['systolic_bp'];
+                $dia = $r['diastolic_bp'];
+                if ($sys >= 140 || $dia >= 90)     $status = 'High';
+                elseif ($sys >= 130 || $dia >= 80) $status = 'Elevated';
+                else                               $status = 'Normal';
+
+                fputcsv($out, [
+                    date('Y-m-d', strtotime($r['date'])),
+                    $r['systolic_bp'],
+                    $r['diastolic_bp'],
+                    $r['heart_rate'],
+                    $r['weight'],
+                    $r['blood_sugar'],
+                    $status,
+                    $r['notes'] ?? '',
+                ]);
+            }
+
+            fclose($out);
+            exit;
+        }
+
+        /* ---- Normal page load ---- */
         $user    = $this->currentUser();
         $records = $this->model->getAll($this->userId());
         $flash   = $_SESSION['flash'] ?? '';

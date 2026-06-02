@@ -4,8 +4,8 @@ error_reporting(E_ALL);
 
 session_start();
 
-define('APP_PATH', __DIR__ . '/../app');
-require_once __DIR__ . '/../config/config.php';
+define('APP_PATH', dirname(__DIR__) . '/app');
+require_once dirname(__DIR__) . '/config/config.php';
 require_once APP_PATH . '/controllers/Controller.php';
 require_once APP_PATH . '/controllers/AuthController.php';
 require_once APP_PATH . '/controllers/PatientController.php';
